@@ -2,14 +2,32 @@ class BaseVehicle
   attr_accessor :wheels, :seats, :structure
 end
 
-class Vehicle < BaseVehicle
-  def initialize(final_material)
-    @final_material = final_material
-    @wheels = final_material.wheels
-    @seats = final_material.seats
-    @structure = final_material.structure
-  end
-end
+# class Vehicle < BaseVehicle
+  # def initialize(final_material)
+    # @final_material = final_material
+    # @wheels = final_material.wheels
+    # @seats = final_material.seats
+    # @structure = final_material.structure
+  # end
+# end
+
+# class BuildProcess
+  # def set_wheels
+    
+  # end
+
+  # def set_seats
+    
+  # end
+
+  # def set_structure
+    
+  # end
+
+  # def get_vehicle
+    
+  # end
+# end
 
 class Car < BaseVehicle
   def set_seats
@@ -39,38 +57,39 @@ class Motorbike < BaseVehicle
   end
 end
 
-class ManufacturingDirector
-  attr_accessor :raw_material
 
-  def initialize(type = :car)
-    case type
-    when :car
-      @raw_material = Car.new
-    when :motorbike
-      @raw_material = Motorbike.new
-    end
-  end
-
-  def set_wheels
-    @raw_material.set_wheels
-  end
-
-  def set_seats
-    @raw_material.set_seats
-  end
-
-  def set_structure
-    @raw_material.set_structure
-  end
-
-  def get_vehicle
-    Vehicle.new(@raw_material)
+class MotorBikeBuilder
+  def build
+    m = Motorbike.new
+    m.set_wheels
+    m.set_seats
+    m.set_structure
+    m
   end
 end
 
-manufacture = ManufacturingDirector.new(:car)
-manufacture.set_wheels
-manufacture.set_seats
-manufacture.set_structure
+class CarBuilder
+  def build
+    m = Car.new
+    m.set_wheels
+    m.set_seats
+    m.set_structure
+    m
+  end
+end
 
-vehicle = manufacture.get_vehicle
+class ManufacturingDirector
+  attr_accessor :builder
+
+  def initialize(builder)
+    @builder = builder
+  end
+
+  def construct
+    @builder.build
+  end
+end
+
+class VehicleProduct
+  attr_accessor :wheels, :seats, :structure
+end

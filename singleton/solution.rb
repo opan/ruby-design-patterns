@@ -5,19 +5,12 @@ class SimpleCounter
     @count ||= 0
   end
 
+  def add
+    @count = @count + 1
+  end
+
   def self.instance
     @@instance
-  end
-
-  def increase
-    @count =+ add
-  end
-
-
-  private
-
-  def add
-    @count + 1
   end
 
   @@instance = SimpleCounter.new
