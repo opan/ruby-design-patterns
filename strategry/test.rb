@@ -15,4 +15,3 @@ class StrategyTest < Minitest::Test
     assert_output(/Things are going/) { report.output_report }
   end
 end
-
