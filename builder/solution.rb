@@ -2,33 +2,6 @@ class BaseVehicle
   attr_accessor :wheels, :seats, :structure
 end
 
-# class Vehicle < BaseVehicle
-  # def initialize(final_material)
-    # @final_material = final_material
-    # @wheels = final_material.wheels
-    # @seats = final_material.seats
-    # @structure = final_material.structure
-  # end
-# end
-
-# class BuildProcess
-  # def set_wheels
-    
-  # end
-
-  # def set_seats
-    
-  # end
-
-  # def set_structure
-    
-  # end
-
-  # def get_vehicle
-    
-  # end
-# end
-
 class Car < BaseVehicle
   def set_seats
     @seats = 5

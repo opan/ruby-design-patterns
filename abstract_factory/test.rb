@@ -3,9 +3,18 @@ require 'pry'
 require_relative 'solution'
 
 class AbstractFactoryTest < Minitest::Test
-  def test_return_increment_value_with_single_instance
-    cash = Cash.new
-    assert_output(/Pay for 20 with cash/) { cash.pay(20) }
+  def test_create_car_suv
+    factory = get_vehicle_factory('car')
+    car = factory.get_vehicle('suv')
+
+    assert car.structure == 'CarSUV'
+  end
+
+  def test_create_bike_vespa
+    factory = get_vehicle_factory('motorbike')
+    bike = factory.get_vehicle('vespa')
+
+    assert bike.structure == 'MotorbikeVespa'
   end
 end
 
