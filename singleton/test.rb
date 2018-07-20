@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'pry'
 require_relative 'exercise'
 
-class SimpleCounterTest < Minitest::Test
+class SingletonTest < Minitest::Test
   def test_return_increment_value_with_single_instance
     counter = SimpleCounter.new
     assert counter.increase == 1
