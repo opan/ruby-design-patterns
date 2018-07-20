@@ -17,4 +17,3 @@ class AbstractFactoryTest < Minitest::Test
     assert bike.structure == 'MotorbikeVespa'
   end
 end
-
