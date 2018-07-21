@@ -4,13 +4,11 @@ require_relative 'solution'
 
 class StateTest < Minitest::Test
   def test_door_operation_state
-    door = DoorOperation.new
-    assert door.state.class == DoorOpenState
-    
-    door.trigger(:close)
-    assert door.state.class == DoorCloseState
+    door = DoorContext.new
 
-    door.trigger(:close)
-    assert door.state.class == DoorAlreadyClosedState
+    assert_output(/The door is open. Do not open again/) { door.open }
+    assert_output(/The door is closed/) { door.close }
+    assert_output(/The door is opened/) { door.open }
+    
   end
 end

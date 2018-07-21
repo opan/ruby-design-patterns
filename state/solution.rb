@@ -1,51 +1,47 @@
-class DoorOperation
-  attr_reader :state
-  def initialize
-    @state = DoorOpenState.new
+class DoorState
+  def open
   end
-
-  def trigger(state)
-    @state = @state.next(state)
+  
+  def close
   end
 end
 
 class DoorOpenState
-  def next(state)
-    if state == :open
-      DoorAlreadyOpenState.new
-    elsif state == :close
-      DoorCloseState.new
-    end
+  def open
+    puts 'The door is open. Do not open again'
+    self.class.new
   end
-end
-
-class DoorAlreadyOpenState
-  def next(state)
-    if state == :open
-      DoorAlreadyOpenState.new
-    elsif state == :close
-      DoorCloseState.new
-    end
+  
+  def close
+    puts 'The door is closed'
+    DoorCloseState.new
   end
 end
 
 class DoorCloseState
-  def next(state)
-    if state == :open
-      DoorOpenState.new
-    elsif state == :close
-      DoorAlreadyClosedState.new
-    end
+  def open
+    puts 'The door is opened'
+    DoorOpenState.new
+  end
+  
+  def close
+    puts 'The door is closed. Do not close again'
+    self.class.new
   end
 end
 
-class DoorAlreadyClosedState
-  def next(state)
-    if state == :open
-      DoorOpenState.new
-    elsif state == :close
-      DoorAlreadyClosedState.new
-    end
+class DoorContext
+  attr_reader :state
+
+  def initialize
+    @state = DoorOpenState.new
+  end
+  
+  def open
+    @state = @state.open
+  end
+  
+  def close
+    @state = @state.close
   end
 end
-
