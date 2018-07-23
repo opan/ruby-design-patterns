@@ -1,23 +1,3 @@
-# class SlickButton
-  # def initialize(command)
-    # @command = command
-  # end
-  # def on_button_push
-    
-  # end
-# end
-
-# class SaveButton < SlickButton
-  # def initialize(*args)
-    
-  # end
-# end
-class UserForm
-  def initialize(*args)
-    
-  end
-end
-
 class AbstractCommand
   def execute
     
